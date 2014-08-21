@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:util="http://www.springframework.org/schema/util" 
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+                    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<bean id="webDriverProvider" class="ru.hh.price.driver.CustomWebDriverProvider">
+	</bean>
+	
+	<!-- org.jbehave.web.selenium.WebDriverScreenshotOnFailure -->
+	<bean id="webDriverScreenshotOnFailure" class="ru.hh.price.driver.CustomWebDriverScreenshotOnFailure">
+	    <constructor-arg ref="webDriverProvider" />
+	</bean>
+
+	<bean id="lifecycleSteps" class="ru.hh.price.steps.LifecycleSteps">
+		<constructor-arg ref="webDriverProvider" />
+	</bean>
+
+<!-- 	<bean id="journaledSteps" class="com.epam.e3s.testing.core.jbehave.steps.JournaledStoriesSteps">
+		<constructor-arg ref="webDriverProvider" />
+	</bean> -->
+
+<!-- 	<bean id="webDriverEventListener" class="com.epam.e3s.testing.core.jbehave.logging.CustomWebDriverEventListener">
+		<constructor-arg ref="webDriverProvider" />
+	</bean> -->
+	<!--
+	<bean id="pageInitializer" class="com.epam.kolyan.common.logging.BeanInitilazer">
+	</bean>-->
+	
+<!-- 	<aop:config>
+		<aop:aspect id="logUtils" ref="aspectLogger"></aop:aspect>
+	</aop:config>
+	
+	<bean id="aspectLogger" class="com.epam.kolyan.common.logging.LoggingUtils">
+	</bean>
+	
+	<aop:aspectj-autoproxy/>
+-->
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:configuration.properties" />
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>configuration</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="config" class="ru.hh.price.utils.Config">
+		<property name="messageSource" ref="messageSource"></property>
+	</bean>
+
+	<bean id="xmlParser" class="ru.hh.price.utils.XmlParser">
+		<property name="projectBuildDirectory" value="${project.biuld.directory}"></property>
+	</bean>
+
+    <!--
+        <bean id="zipArchiver" class="com.epam.kolyan.common.utilities.ZipArchiver">
+            <property name="projectBuildDirectory" value="${project.biuld.directory}"></property>
+        </bean>-->
+	
+	<context:component-scan base-package="ru.hh.price.ui" />
+		
+</beans>

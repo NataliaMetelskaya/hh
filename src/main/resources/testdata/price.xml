@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testData  xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<xi:include href="application-resources.xml" parse="xml"/>
+
+    <priceCard>
+        <title>Покупка услуг (демо)</title>
+        <tabs>
+            <recommended>
+                <title>Рекомендуемое</title>
+            </recommended>
+            <dbaccess>
+                <title>Доступ к базе резюме</title>
+            </dbaccess>
+            <publications>
+                <title>Публикации вакансий</title>
+            </publications>
+            <additional>
+                <title>Дополнительные услуги</title>
+            </additional>
+        </tabs>
+    </priceCard>
+
+</testData>
