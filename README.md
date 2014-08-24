@@ -1,5 +1,4 @@
 # HH Price page tests
-==
 
 ## Run tests
 
@@ -12,7 +11,7 @@ mvn verify
 ## Test results
 
 Test result location:
-target/jbehave/view/index.html
-target/jbehave/view/report.html
-target/jbehave/view/navigator.html (works in firefox only)
-target/jbehave/view/maps.html
+- target/jbehave/view/index.html
+- target/jbehave/view/report.html
+- target/jbehave/view/navigator.html (works in firefox only)
+- target/jbehave/view/maps.html
