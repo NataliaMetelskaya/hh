@@ -14,12 +14,9 @@
         <jbehave.core.version>3.7.5</jbehave.core.version>
         <jbehave.web.version>3.5.5</jbehave.web.version>
         <jbehave.site.version>3.2</jbehave.site.version>
-        <!--3.1.1-->
         <fluent.selenium.version>1.6.3</fluent.selenium.version>
         <testng.version>6.8.7</testng.version>
-        <!-- 6.1.1 -->
         <reportng.version>1.1.4</reportng.version>
-        <!-- 1.1.4 -->
         <junit.version>4.11</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
         <spring.version>3.1.4.RELEASE</spring.version>
@@ -32,14 +29,13 @@
         <jp.ignore.failures>false</jp.ignore.failures>
         <jp.meta.filter></jp.meta.filter>
         <jp.story.timeout.in.secs>300</jp.story.timeout.in.secs>
-        <!-- 10 min -->
-        <jp.threads>1</jp.threads>
+        <jp.threads>3</jp.threads>
         <jp.skip>false</jp.skip>
         <jp.stories>**/StoriesConfiguration.java</jp.stories>
         <jp.map.stories>**/MapStories.java</jp.map.stories>
         <!-- Running stories -->
         <config.browser>chrome</config.browser>
-        <config.run.story.path>**/</config.run.story.path>
+        <config.run.story.path>**/dev/</config.run.story.path>
         <config.file.name.context>spring.xml</config.file.name.context>
         <config.url.base>http://hh.ru</config.url.base>
     </properties>
@@ -91,7 +87,6 @@
             <version>${jbehave.core.version}</version>
         </dependency>
 
-
         <!-- Selenium -->
 
         <dependency>
@@ -125,7 +120,6 @@
             </exclusions>
         </dependency>
 
-
         <!-- Testing -->
 
         <dependency>
@@ -138,8 +132,6 @@
             <artifactId>hamcrest-all</artifactId>
             <version>${hamcrest.version}</version>
         </dependency>
-
-
 
         <!-- Spring framework -->
 
@@ -177,12 +169,6 @@
             <version>${slf4j.version}</version>
         </dependency>
 
-        <!--        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
-        </dependency>-->
-
     </dependencies>
 
     <build>
@@ -212,7 +198,6 @@
                     <configuration>
                         <lifecycleMappingMetadata>
                             <pluginExecutions>
-                                <!-- _____________________________________________________ -->
                                 <pluginExecution>
                                     <pluginExecutionFilter>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -227,7 +212,6 @@
                                         <ignore></ignore>
                                     </action>
                                 </pluginExecution>
-                                <!-- _____________________________________________________ -->
                                 <pluginExecution>
                                     <pluginExecutionFilter>
                                         <groupId>org.jbehave</groupId>
@@ -241,7 +225,6 @@
                                         <ignore></ignore>
                                     </action>
                                 </pluginExecution>
-                                <!-- _____________________________________________________ -->
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
@@ -300,7 +283,6 @@
                 <artifactId>jbehave-maven-plugin</artifactId>
                 <version>${jbehave.core.version}</version>
                 <executions>
-                    <!--____________________________________________ -->
                     <execution>
                         <id>unpack-view-resources</id>
                         <phase>process-resources</phase>
@@ -308,7 +290,6 @@
                             <goal>unpack-view-resources</goal>
                         </goals>
                     </execution>
-                    <!--____________________________________________ -->
                     <execution>
                         <id>embeddable-stories</id>
                         <phase>integration-test</phase>
@@ -356,7 +337,6 @@
                             <!-- SameThreadExecutors , FixedThreadExecutors -->
                         </configuration>
                     </execution>
-                    <!-- _____________________________________________________ -->
                     <execution>
                         <id>map-stories</id>
                         <phase>integration-test</phase>
@@ -381,38 +361,7 @@
                             <goal>map-stories-as-embeddables</goal>
                         </goals>
                     </execution>
-                    <!-- _____________________________________________________ -->
-                    <!-- 					<execution>
-                                            <id>report-stepdocs</id>
-                                            <phase>integration-test</phase>
-                                            <configuration>
-                                                <includes>
-                                                    <include>${jp.stories}</include>
-                                                </includes>
-                                            </configuration>
-                                            <goals>
-                                                <goal>report-stepdocs-as-embeddables</goal>
-                                            </goals>
-                                        </execution> -->
-                    <!-- _____________________________________________________ -->
                 </executions>
-                <dependencies>
-<!--                    <dependency>
-                        <groupId>com.google.guava</groupId>
-                        <artifactId>guava</artifactId>
-                        <version>${google.guava.version}</version>
-                    </dependency>-->
-
-
-
-
-<!--                    <dependency>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
-                        <version>${log4j.version}</version>
-                    </dependency>-->
-
-                </dependencies>
             </plugin>
         </plugins>
     </build>
