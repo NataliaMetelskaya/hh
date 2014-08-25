@@ -57,4 +57,16 @@ When 'Go to payment' link is clicked at the DbAccess tab
 Then 'Payment page' is opened
 
 
+Scenario: Add tariff to cart, change tariff and click recalculate
+When open '//dbaccess/uri' page
+Then active tab '//dbaccess/title' is displayed on the price card
+When 'Add to Cart' button is clicked at the DbAccess tab
+Then item with title: '//dbaccess//addToCart//title', old price: '//dbaccess//addToCart//priceOld', actual price: '//dbaccess//addToCart//priceActual' and description: '//dbaccess//addToCart//descrip' is added to Cart
+And gift: '//dbaccess//addToCart//giftText' text is displayed on Cart
+When check radio button with days: '//changeTariff/selectButton/days' and cost: '//changeTariff/selectButton/cost' at the DbAccess tab
+Then radio button with the label: '//changeTariff/displayedValue' is checked at the DbAccess tab
+And actual total cost: '//dbaccess//changeTariff/totalCost' is displayed at the DbAccess tab
+When 'Recalculate' button is clicked at the DbAccess tab
+Then item with title: '//dbaccess//changeTariff/cartView/title', old price: '//dbaccess//changeTariff/cartView/priceOld', actual price: '//dbaccess//changeTariff/cartView/priceActual' and description: '//dbaccess//changeTariff/cartView/descrip' is added to Cart
+And gift: '//dbaccess//addToCart//giftText' text is displayed on Cart
 

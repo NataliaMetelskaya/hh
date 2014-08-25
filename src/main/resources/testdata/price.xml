@@ -114,6 +114,13 @@
                     </selectButton>
                     <displayedValue>6 месяцев 320 000 руб.</displayedValue>
                     <totalCost>320 000 руб.</totalCost>
+                    <cartView>
+                        <title>Доступ к базе резюме —</title>
+                        <priceOld></priceOld>
+                        <priceActual>320 000 руб.</priceActual>
+                        <descrip></descrip>
+                        <giftText>Вакансия Стандарт+ бесплатно</giftText>
+                    </cartView>
                 </changeTariff>
                 <addToCart>
                     <cartView>

@@ -310,6 +310,9 @@ public class PricePage extends AbstractPage {
         @FindBy(how = How.XPATH, using = "//button[contains(@class,'ResumeAccess-AddToCartButton')][contains(.,'В корзину')]")
         private WebElement addToCartButton;
 
+        @FindBy(how = How.XPATH, using = "//button[contains(@class,'ResumeAccess-AddToCartButton')][contains(.,'Пересчитать')]")
+        private WebElement recalculateButton;
+
         @FindBy(how = How.XPATH, using = "//a[contains(text(),'Перейти к оплате')]")
         private WebElement goToPaymentLink;
 
@@ -431,6 +434,11 @@ public class PricePage extends AbstractPage {
         public void clickAddToCart() {
             _waitForElementToBeClickable(addToCartButton);
             addToCartButton.click();
+        }
+
+        public void clickRecalculateButton() {
+            _waitForElementToBeClickable(recalculateButton);
+            recalculateButton.click();
         }
 
         public void clickGoToPayment() {

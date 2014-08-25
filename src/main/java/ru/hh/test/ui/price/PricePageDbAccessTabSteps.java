@@ -26,6 +26,10 @@ public class PricePageDbAccessTabSteps extends BaseSteps {
     @Autowired
     private Pages pages;
 
+    @When("'Recalculate' button is clicked at the DbAccess tab")
+    public void recalculate() {
+        pages.pricePage().getSection(PricePage.DbAccessTab.class).clickRecalculateButton();
+    }
 
     @When("'Add to Cart' button is clicked at the DbAccess tab")
     public void add_to_cart() {
