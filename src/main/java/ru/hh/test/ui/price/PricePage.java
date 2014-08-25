@@ -471,14 +471,51 @@ public class PricePage extends AbstractPage {
          */
         private final String XPATH_PUBLICATION_TITLE = ".//div//h2[contains(@class,'title')]";
         private final String XPATH_PUBLICATION_AMOUNT_INPUT = ".//input[contains(@class,'CountableService-AmountInput')]";
+        private final String XPATH_PUBLICATION_AMOUNT_INPUT_TEXT = ".//div[@class='price-countable-service__pcs']";
         private final String XPATH_PUBLICATION_ADD_TO_CART_BUTTON = ".//a[contains(@class,'AddToCartButton')]";
         private final String XPATH_PUBLICATION_COST = ".//span[@class='price-countable-service__cost']";
+        private final String XPATH_PUBLICATION_COST_OLD = ".//span[contains(@class,'OldCost')]";
         private final String XPATH_PUBLICATION_DISCAUTN_RATES = ".//div[contains(@class,'DiscountRate')]";
-        private final String XPATH_PUBLICATION_DISCAUTN_RATE_AMOUNT = ".//div/span[contains(@class,'rate-amount')]";
-        private final String XPATH_PUBLICATION_DISCAUTN_RATE_COST = ".//div/span[contains(@class,'rate-cost')]";
+        private final String XPATH_PUBLICATION_DISCAUTN_RATE_AMOUNT = ".//span[contains(@class,'rate-amount')]";
+        private final String XPATH_PUBLICATION_DISCAUTN_RATE_COST = ".//span[contains(@class,'rate-cost')]";
+        // parameters: 1 - amount, 2- cost
+        private final String XPATH_PUBLICATION_DISCAUTN_RATE_LINK = "//div[@data-amount='%s']/span[contains(text(),'%s')]/parent::*/span";
 
         public String getPublicationTitle(WebElement publication) {
             return publication.findElement(By.xpath(XPATH_PUBLICATION_TITLE)).getText();
+        }
+
+        public String getActualAmount(WebElement publication) {
+            String s1 = publication.findElement(By.xpath(XPATH_PUBLICATION_AMOUNT_INPUT)).getAttribute("value");
+            String s2 = publication.findElement(By.xpath(XPATH_PUBLICATION_AMOUNT_INPUT_TEXT + "/span[2]")).getText();
+            return s1 + s2;
+        }
+
+        public String getActualCost(WebElement publication) {
+            return publication.findElement(By.xpath(XPATH_PUBLICATION_COST)).getText();
+        }
+
+        public String getOldCost(WebElement publication) {
+            return publication.findElement(By.xpath(XPATH_PUBLICATION_COST_OLD)).getText();
+        }
+
+        public String waitForActualCostDisplayed(WebElement publication, String cost) {
+            By acualCost = By.xpath(XPATH_PUBLICATION_COST + String.format("[contains(.,'%s')]", cost));
+            return _findWebElementInContext(publication, acualCost, 3).getText();
+        }
+
+        public void setAmount(WebElement publication, String amount) {
+            WebElement input = publication.findElement(By.xpath(XPATH_PUBLICATION_AMOUNT_INPUT));
+            input.clear();
+            input.sendKeys(amount);
+        }
+
+        public void addToCartOrRecalculate(WebElement publication) {
+            publication.findElement(By.xpath(XPATH_PUBLICATION_ADD_TO_CART_BUTTON)).click();
+        }
+
+        public void clickDiscauntRateLink(WebElement publication, String amount, String cost) {
+            publication.findElement(By.xpath(String.format(XPATH_PUBLICATION_DISCAUTN_RATE_LINK, amount, cost))).click();
         }
 
     }

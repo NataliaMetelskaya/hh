@@ -135,6 +135,58 @@
             <publications>
                 <title>Публикации вакансий</title>
                 <uri>/price#publications</uri>
+                <default>
+                    <publication>
+                        <title>Стандарт</title>
+                        <amount>1шт.</amount>
+                        <cost>600 руб.</cost>
+                    </publication>
+                    <publication>
+                        <title>Стандарт +</title>
+                        <amount>1шт.</amount>
+                        <cost>2 800 руб.</cost>
+                    </publication>
+                    <publication>
+                        <title>Премиум</title>
+                        <amount>1шт.</amount>
+                        <cost>8 000 руб.</cost>
+                    </publication>
+                    <publication>
+                        <title>Анонимная</title>
+                        <amount>1шт.</amount>
+                        <cost>3 000 руб.</cost>
+                    </publication>
+                </default>
+                <changeAmount>
+                    <amount>3</amount>
+                    <cost>8 400</cost>
+                    <cur>руб.</cur>
+                </changeAmount>
+                <cartView>
+                    <title>1 анонимная вакансия по 3 000 —</title>
+                    <priceOld></priceOld>
+                    <priceActual>3 000 руб.</priceActual>
+                    <descrip></descrip>
+                    <giftText>День доступа к базе резюме бесплатно</giftText>
+                </cartView>
+                <discountRate>
+                    <link>
+                        <amount>10</amount>
+                        <cost>510</cost>
+                    </link>
+                    <view>
+                        <amount>10шт.</amount>
+                        <cost>5 100 руб.</cost>
+                        <oldCost>6 000 руб.</oldCost>
+                    </view>
+                    <cart>
+                        <title>10 вакансий Стандарт по 510 —</title>
+                        <priceOld>6 000</priceOld>
+                        <priceActual>5 100 руб.</priceActual>
+                        <descrip></descrip>
+                        <giftText>День доступа к базе резюме бесплатно</giftText>
+                    </cart>
+                </discountRate>
             </publications>
             <additional>
                 <title>Дополнительные услуги</title>
