@@ -30,13 +30,12 @@
         <jp.meta.filter></jp.meta.filter>
         <jp.story.timeout.in.secs>300</jp.story.timeout.in.secs>
         <jp.threads>3</jp.threads>
-        <jp.skip>false</jp.skip>
+        <jp.skip>true</jp.skip>
         <jp.stories>**/StoriesConfiguration.java</jp.stories>
         <jp.map.stories>**/MapStories.java</jp.map.stories>
         <!-- Running stories -->
         <config.browser>chrome</config.browser>
         <config.run.story.path>**/dev/</config.run.story.path>
-        <config.file.name.context>spring.xml</config.file.name.context>
         <config.url.base>http://hh.ru</config.url.base>
     </properties>
 
@@ -299,6 +298,18 @@
                         <configuration>
                             <systemProperties>
                                 <property>
+                                    <name>os.name</name>
+                                    <value>${os.name}</value>
+                                </property>
+                                <property>
+                                    <name>os.arch</name>
+                                    <value>${os.arch}</value>
+                                </property>
+                                <property>
+                                    <name>project.build.outputDirectory</name>
+                                    <value>${project.build.outputDirectory}</value>
+                                </property>
+                                <property>
                                     <name>JOURNAL_FIREFOX_COMMANDS</name>
                                     <value>true</value>
                                 </property>
@@ -306,17 +317,9 @@
                                     <name>browser</name>
                                     <value>${config.browser}</value>
                                 </property>
-                                <property>
-                                    <name>webdriver.chrome.driver</name>
-                                    <value>${project.build.outputDirectory}/driver/${os.name}/${os.arch}/chromedriver</value>
-                                </property>
-                                <property>
+                                 <property>
                                     <name>run.story.path</name>
                                     <value>${config.run.story.path}</value>
-                                </property>
-                                <property>
-                                    <name>file.name.context</name>
-                                    <value>${config.file.name.context}}</value>
                                 </property>
                             </systemProperties>
                             <includes>

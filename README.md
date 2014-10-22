@@ -2,11 +2,15 @@
 
 ## Run tests
 
-For run tests use ./run.sh simple script or maven command line:
-mvn verify
+Use simple script for run tests on the  Unix systems:
+  ./run.sh
+Use maven commands for Windows: 
+  mvn clean install -Djp.skip=false
 
-- Use -Djp.threads=3 maven parameter if you want to run all tests in many threads
-- Use -Dconfig.browser=chrome(or firefox) maven parameter if you want to run tests in other browsers
+## Additional parameters
+
+-Djp.threads=3 			- if you want to run all tests in any threads
+-Dconfig.browser=chrome		- if you want to run tests in other browsers (chromeor or firefox)
 
 ## Test results
 

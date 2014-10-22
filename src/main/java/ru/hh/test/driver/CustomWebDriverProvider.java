@@ -79,7 +79,8 @@ public class CustomWebDriverProvider extends DelegatingWebDriverProvider {
 	}
 	
     public  void initialize() {
-    	browser = SupportedBrowser.valueOf(SupportedBrowser.class, System.getProperty("browser", "firefox").toUpperCase(usingLocale()));
+        DriverSystemPropertiesResolver.applyDiverProperties();
+    	browser = DriverSystemPropertiesResolver.getBrowser();
     	log.info("Initialize WebDriver: [{}] started.................", browser);
     	try {
 			delegate.set(createDriver(browser));
@@ -91,8 +92,6 @@ public class CustomWebDriverProvider extends DelegatingWebDriverProvider {
     }
 
     private synchronized WebDriver createDriver(SupportedBrowser browser) throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
-    	String remote = System.getProperty("remote", "false");
-    	log.info("Start tests on RemoteWebDriver: [" + remote + "].");
         switch (browser) {
         case CHROME:
             return createChromeDriver();
@@ -118,8 +117,7 @@ public class CustomWebDriverProvider extends DelegatingWebDriverProvider {
 
     private WebDriver createHtmlUnitDriver() {
         HtmlUnitDriver driver = new HtmlUnitDriver();
-        boolean javascriptEnabled = parseBoolean(System.getProperty("webdriver.htmlunit.javascriptEnabled", "true"));
-        driver.setJavascriptEnabled(javascriptEnabled);
+        driver.setJavascriptEnabled(DriverSystemPropertiesResolver.isJavascriptEnabled());
         return createEventFiringWebDriverWithListener(driver);
 	}
 
@@ -128,10 +126,6 @@ public class CustomWebDriverProvider extends DelegatingWebDriverProvider {
     	CustomWebDriverEventListener eventListener = new CustomWebDriverEventListener(driver);
     	efWebDriver.register(eventListener);
     	return efWebDriver;
-    }
-    
-    private Locale usingLocale() {
-        return Locale.getDefault();
     }
 
 }
